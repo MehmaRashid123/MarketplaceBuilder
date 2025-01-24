@@ -1,5 +1,5 @@
-import React from 'react';
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
 
 const About = () => {
   return (
@@ -10,9 +10,7 @@ const About = () => {
           Learn more about our mission, values, and the team behind the brand.
         </p>
       </div>
-
       <div className="mt-12 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
-        {/* Section 1: Our Mission */}
         <div className="text-center">
           <div className="inline-block bg-yellow-500 p-4 rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -24,8 +22,6 @@ const About = () => {
             We aim to provide high-quality, affordable furniture that makes your home feel like a sanctuary.
           </p>
         </div>
-
-        {/* Section 2: Our Story */}
         <div className="text-center">
           <div className="inline-block bg-yellow-500 p-4 rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -34,11 +30,9 @@ const About = () => {
           </div>
           <h3 className="mt-4 text-2xl font-semibold text-gray-900">Our Story</h3>
           <p className="mt-2 text-gray-600">
-            From humble beginnings, we've grown into a company that offers a wide range of carefully crafted products to suit every home.
+            From humble beginnings, we&apos;ve grown into a company that offers a wide range of carefully crafted products to suit every home.
           </p>
         </div>
-
-        {/* Section 3: Our Values */}
         <div className="text-center">
           <div className="inline-block bg-yellow-500 p-4 rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -49,55 +43,6 @@ const About = () => {
           <p className="mt-2 text-gray-600">
             We believe in craftsmanship, sustainability, and providing exceptional customer service to every person who shops with us.
           </p>
-        </div>
-      </div>
-
-      {/* Team Section */}
-      <div className="mt-16 text-center">
-        <h2 className="text-3xl font-extrabold text-gray-900">Meet Our Team</h2>
-        <p className="mt-4 text-lg text-gray-600">
-          Our team consists of passionate individuals committed to delivering top-notch furniture and service.
-        </p>
-
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Team Member 1 */}
-          <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md">
-            <Image
-              src="/team-member-1.jpg" // Replace with your image
-              alt="Team Member 1"
-              width={150}
-              height={150}
-              className="rounded-full mb-4"
-            />
-            <h3 className="text-xl font-semibold text-gray-900">John Doe</h3>
-            <p className="text-gray-600">CEO & Founder</p>
-          </div>
-
-          {/* Team Member 2 */}
-          <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md">
-            <Image
-              src="/team-member-2.jpg" // Replace with your image
-              alt="Team Member 2"
-              width={150}
-              height={150}
-              className="rounded-full mb-4"
-            />
-            <h3 className="text-xl font-semibold text-gray-900">Jane Smith</h3>
-            <p className="text-gray-600">Lead Designer</p>
-          </div>
-
-          {/* Team Member 3 */}
-          <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md">
-            <Image
-              src="/team-member-3.jpg" // Replace with your image
-              alt="Team Member 3"
-              width={150}
-              height={150}
-              className="rounded-full mb-4"
-            />
-            <h3 className="text-xl font-semibold text-gray-900">Alice Johnson</h3>
-            <p className="text-gray-600">Marketing Manager</p>
-          </div>
         </div>
       </div>
     </div>
