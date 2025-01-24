@@ -22,7 +22,7 @@ function CheackOut() {
     }, []);
 
     // Calculate the total price of the cart items
-    const calculateTotal = (cart: any[]) => {
+    const calculateTotal = (cart: CartItem[]) => { // Specify CartItem[] instead of any[]
         const total = cart.reduce((sum, item) => sum + item.price * item.stockLevel, 0);
         setTotalAmount(total);
     };

@@ -32,7 +32,7 @@ function Header() {
             <div className="flex justify-between items-center mx-auto max-w-screen-xl p-4">
                 {/* Logo */}
                 <h1 className="text-xl font-bold text-gray-800">
-                    <Link href="/">Syeda's</Link>
+                    <Link href="/">Syeda&apos;s</Link> {/* Escaped apostrophe */}
                 </h1>
 
                 {/* Mobile Menu Button */}
