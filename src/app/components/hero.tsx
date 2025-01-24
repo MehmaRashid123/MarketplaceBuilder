@@ -12,7 +12,7 @@ function Hero() {
                 <div className=" my-auto text-center md:text-left">
                     <h1 className="text-3xl sm:text-4xl md:text-6xl font-semibold my-6">Rocket single</h1>
                     <span className="text-3xl sm:text-4xl md:text-6xl font-semibold block mb-6">seater</span>
-                    <Link href="/">
+                    <Link href="/shop">
                         <p className="text-2xl mt-8 underline underline-offset-8 text-black-600 ">Shop Now</p>
                     </Link>
                 </div>
@@ -87,8 +87,12 @@ function Hero() {
                             </div>
                         ))}
                     </div>
-
-                    <p className="text-xl text-center mx-auto my-20 underline underline-offset-8 text-black-600 ">View More</p>
+                    <Link href='/shop'>
+                    <p className="text-xl text-center mx-auto my-20 underline underline-offset-8 text-black-600 ">
+                        
+                        View More
+                        </p>
+                    </Link>
                 </div>
 
             </div>

@@ -72,14 +72,16 @@ function Header() {
 
                 {/* Icons */}
                 <div className="flex items-center gap-4 text-gray-700">
-                    <Link href="/myaccount" aria-label="User Profile">
+                    <Link href="/About" aria-label="User Profile">
                         <FaRegUser size={20} className="hover:text-blue-600" />
                     </Link>
                     <Link href="/search" aria-label="Search">
                         <FiSearch size={22} className="hover:text-blue-600" />
                     </Link>
-                    <IoMdHeartEmpty size={25} className="hover:text-blue-600" />
-                    
+                    <Link href="/wishlist" aria-label="Wishlist">
+                        <IoMdHeartEmpty size={25} className="hover:text-blue-600" />
+                    </Link>
+
                     {/* Cart Icon with Quantity */}
                     <Link href="/cart" aria-label="Shopping Cart">
                         <div className="relative">
@@ -91,14 +93,19 @@ function Header() {
                             )}
                         </div>
                     </Link>
+
+                    {/* Sign Up Button */}
+                    <Link href="/singup">
+                        <button className="py-2 px-6 text-indigo-600 border border-indigo-600 rounded-full hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200">
+                            Sign Up
+                        </button>
+                    </Link>
                 </div>
             </div>
 
             {/* Mobile Menu (Visible when isMenuOpen is true) */}
             <nav
-                className={`fixed top-0 left-0 w-full h-full bg-white z-40 transition-transform duration-300 ${
-                    isMenuOpen ? 'translate-x-0' : '-translate-x-full'
-                }`}
+                className={`fixed top-0 left-0 w-full h-full bg-white z-40 transition-transform duration-300 ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}
             >
                 <div className="flex justify-between items-center p-4 border-b">
                     <h1 className="text-xl font-bold text-gray-800">Your Logo</h1>

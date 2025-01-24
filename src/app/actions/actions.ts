@@ -1,19 +1,13 @@
-export const addToCart = (product: Product) => {
-  // Retrieve the current cart items from localStorage
+export const addToCart = (product: Product, quantity: number = 1) => {
   const cart: Product[] = JSON.parse(localStorage.getItem("cart") || "[]");
-
-  // Check if the product already exists in the cart
-  const existingProductIndex = cart.findIndex((item) => item.id === product._id);
+  const existingProductIndex = cart.findIndex((item) => item.id === product.id);
 
   if (existingProductIndex > -1) {
-    // If product exists, increment its quantity (stockLevel)
-    cart[existingProductIndex].stockLevel += 1;
+    cart[existingProductIndex].stockLevel += quantity;
   } else {
-    // If product doesn't exist, add it as a new item with quantity 1
-    cart.push({ ...product, stockLevel: 1 });
+    cart.push({ ...product, stockLevel: quantity });
   }
 
-  // Save the updated cart back to localStorage
   localStorage.setItem("cart", JSON.stringify(cart));
 };
 
@@ -28,8 +22,11 @@ export const updateCartQuantity = (productId: string, quantity: number) => {
   const productIndex = cart.findIndex((item) => item.id === productId);
 
   if (productIndex > -1) {
-    // Update stockLevel for the specified product
-    cart[productIndex].stockLevel = quantity;
+    if (quantity > 0) {
+      cart[productIndex].stockLevel = quantity;
+    } else {
+      cart.splice(productIndex, 1);
+    }
     localStorage.setItem("cart", JSON.stringify(cart));
   }
 };
@@ -42,4 +39,9 @@ export const getCartItems = (): Product[] => {
     console.error("Failed to parse cart items:", e);
     return [];
   }
+};
+
+// Add this function
+export const clearCart = () => {
+  localStorage.removeItem("cart");
 };
