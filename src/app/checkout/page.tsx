@@ -10,9 +10,6 @@ function Checkout() {
         price: number;
         stockLevel: number;
     }
-    console.log(process.env.NEXT_PUBLIC_SANITY_DATASET);
-
-
     const [cartItems, setCartItems] = useState<CartItem[]>([]);
     const [totalAmount, setTotalAmount] = useState(0);
 
