@@ -29,7 +29,7 @@ function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/about">
+              <Link href="/About">
                 <p className="font-medium ">About</p>
               </Link>
             </li>

@@ -94,12 +94,7 @@ function Header() {
                         </div>
                     </Link>
 
-                    {/* Sign Up Button */}
-                    <Link href="/singup">
-                        <button className="py-2 px-6 text-indigo-600 border border-indigo-600 rounded-full hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-200">
-                            Sign Up
-                        </button>
-                    </Link>
+                    
                 </div>
             </div>
 
