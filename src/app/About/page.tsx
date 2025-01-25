@@ -1,6 +1,4 @@
 import React from "react";
-import Image from "next/image";
-
 const About = () => {
   return (
     <div className="bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
