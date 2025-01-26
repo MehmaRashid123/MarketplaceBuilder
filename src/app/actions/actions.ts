@@ -7,13 +7,18 @@ export interface Product {
   discountPercentage: number;
   isFeaturedProduct: number;
   name: string;
-  image: any;
+  image: {
+    asset: {
+      _ref: string;
+      _type: string;
+    };
+  };
   _id: string;
-  sizes:string[];
-  stockLevel:number;
+  sizes: string[];
+  stockLevel: number;
   quantity?: number;
-  
 }
+
 
 export const addToCart = (product: Product, quantity: number = 1) => {
   const cart: Product[] = JSON.parse(localStorage.getItem("cart") || "[]");

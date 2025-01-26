@@ -10,17 +10,22 @@ export interface Product {
   id: string;
   price: number;
   description: string;
-  stockLevel: number;
   imagePath: string;
   discountPercentage: number;
   isFeaturedProduct: number;
   name: string;
-  image: any;
+  image: {
+    asset: {
+      _ref: string;
+      _type: string;
+    };
+  };
   _id: string;
-  sizes:string[];
+  sizes: string[];
+  stockLevel: number;
   quantity?: number;
-  
 }
+
 
 
 const CartPage = () => {

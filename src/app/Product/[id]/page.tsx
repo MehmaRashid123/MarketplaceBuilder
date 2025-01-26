@@ -17,12 +17,17 @@ export interface Product {
   discountPercentage: number;
   isFeaturedProduct: number;
   name: string;
-  image: any;
+  image: {
+    asset: {
+      _ref: string;
+      _type: string;
+    };
+  };
   _id: string;
-  sizes:string[];
+  sizes: string[];
   quantity?: number;
-  
 }
+
 
 import { useParams } from "next/navigation";
 
