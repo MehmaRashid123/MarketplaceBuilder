@@ -75,7 +75,7 @@ function Header() {
                     <Link href="/About" aria-label="User Profile">
                         <FaRegUser size={20} className="hover:text-blue-600" />
                     </Link>
-                    <Link href="/search" aria-label="Search">
+                    <Link href="/" aria-label="Search">
                         <FiSearch size={22} className="hover:text-blue-600" />
                     </Link>
                     <Link href="/wishlist" aria-label="Wishlist">
