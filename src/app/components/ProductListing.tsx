@@ -7,6 +7,25 @@ import { addToCart } from "../actions/actions";
 import Swal from "sweetalert2";
 import { IoHeartCircle } from "react-icons/io5";
 
+
+export interface Product {
+  category: string;
+  id: string;
+  price: number;
+  description: string;
+  stockLevel: number;
+  imagePath: string;
+  discountPercentage: number;
+  isFeaturedProduct: number;
+  name: string;
+  image: any;
+  _id: string;
+  sizes:string[];
+  quantity?: number;
+  
+}
+
+
 const ProductListing = ({ product }: { product: Product }) => {
   const [isInWishlist, setIsInWishlist] = useState(false); // Track if the product is in the wishlist
 

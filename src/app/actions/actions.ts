@@ -1,3 +1,20 @@
+export interface Product {
+  category: string;
+  id: string;
+  price: number;
+  description: string;
+  imagePath: string;
+  discountPercentage: number;
+  isFeaturedProduct: number;
+  name: string;
+  image: any;
+  _id: string;
+  sizes:string[];
+  stockLevel:number;
+  quantity?: number;
+  
+}
+
 export const addToCart = (product: Product, quantity: number = 1) => {
   const cart: Product[] = JSON.parse(localStorage.getItem("cart") || "[]");
   const existingProductIndex = cart.findIndex((item) => item.id === product.id);

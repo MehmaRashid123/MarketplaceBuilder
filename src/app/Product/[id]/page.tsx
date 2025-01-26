@@ -6,6 +6,24 @@ import Image from "next/image";
 import Swal from "sweetalert2";
 import { addToCart } from "@/app/actions/actions";
 import { useEffect, useState } from "react";
+
+export interface Product {
+  category: string;
+  id: string;
+  price: number;
+  description: string;
+  stockLevel: number;
+  imagePath: string;
+  discountPercentage: number;
+  isFeaturedProduct: number;
+  name: string;
+  image: any;
+  _id: string;
+  sizes:string[];
+  quantity?: number;
+  
+}
+
 import { useParams } from "next/navigation";
 
 const ProductPage = () => {

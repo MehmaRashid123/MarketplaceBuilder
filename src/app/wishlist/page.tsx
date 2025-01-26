@@ -4,6 +4,23 @@ import { getCartItems, addToCart } from "../actions/actions";
 import Swal from "sweetalert2";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
+export interface Product {
+  category: string;
+  id: string;
+  price: number;
+  description: string;
+  imagePath: string;
+  discountPercentage: number;
+  isFeaturedProduct: number;
+  name: string;
+  image: any;
+  _id: string;
+  sizes:string[];
+  stockLevel:number;
+  quantity?: number;
+  
+}
+
 
 const WishlistPage = () => {
   const [wishlist, setWishlist] = useState<Product[]>([]);

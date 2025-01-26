@@ -5,6 +5,23 @@ import Swal from "sweetalert2";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import Link from "next/link";
+export interface Product {
+  category: string;
+  id: string;
+  price: number;
+  description: string;
+  stockLevel: number;
+  imagePath: string;
+  discountPercentage: number;
+  isFeaturedProduct: number;
+  name: string;
+  image: any;
+  _id: string;
+  sizes:string[];
+  quantity?: number;
+  
+}
+
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState<Product[]>([]);
