@@ -25,7 +25,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const isStudioRoute = typeof window !== "undefined" && window.location.pathname.includes("studio");
 
 return (
     <html lang="en">

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -16,26 +16,29 @@ interface Post {
   date: string;
 }
 
-interface BlogProps {
-  posts: Post[];
-}
-
-const Blog: React.FC<BlogProps> = ({ posts }) => {
+const Blog: React.FC = () => {
+  const [posts, setPosts] = useState<Post[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 3;
 
-  const totalPages = Math.ceil(posts.length / postsPerPage);
+  useEffect(() => {
+    // Simulate fetching posts from an API
+    const fetchedPosts: Post[] = [
+      { image: "/p4.jpeg", title: "Going all-in", category: "Crafts", date: "01 Jan 2023" },
+      { image: "/p3.jpeg", title: "Exploring new ways", category: "Design", date: "15 Mar 2023" },
+      { image: "/p1.jpeg", title: "Sustainable Living", category: "Lifestyle", date: "10 Oct 2022" },
+      { image: "/p2.jpeg", title: "Building a Modern Home", category: "Architecture", date: "25 Dec 2022" },
+    ];
+    setPosts(fetchedPosts);
+  }, []);
 
+  const totalPages = Math.ceil(posts.length / postsPerPage);
   const currentPosts = posts.slice(
     (currentPage - 1) * postsPerPage,
     currentPage * postsPerPage
   );
 
-  interface HandlePageChange {
-    (page: number): void;
-  }
-
-  const handlePageChange: HandlePageChange = (page) => {
+  const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
@@ -101,6 +104,26 @@ const Blog: React.FC<BlogProps> = ({ posts }) => {
             <h3 className="text-xl font-bold mb-4">Categories</h3>
             <ul className="space-y-8 text-gray-500">
               {/* Category List */}
+              <li>
+                <Link href="/blog/category/crafts" className="hover:underline">
+                  Crafts
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog/category/design" className="hover:underline">
+                  Design
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog/category/lifestyle" className="hover:underline">
+                  Lifestyle
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog/category/architecture" className="hover:underline">
+                  Architecture
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -108,23 +131,29 @@ const Blog: React.FC<BlogProps> = ({ posts }) => {
 
       {/* Pagination */}
       <div className="flex justify-center mt-6">
-        {/* Pagination Logic */}
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="px-4 py-2 mx-2 bg-gray-200 rounded-lg hover:bg-gray-300 disabled:opacity-50"
+        >
+          Previous
+        </button>
+        <span className="flex items-center justify-center text-lg">{`Page ${currentPage} of ${totalPages}`}</span>
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className="px-4 py-2 mx-2 bg-gray-200 rounded-lg hover:bg-gray-300 disabled:opacity-50"
+        >
+          Next
+        </button>
       </div>
 
       {/* Field Component */}
-      <div className="justify-center mx-auto text-center">
+      <div className="justify-center mx-auto text-center mt-10">
         <Field />
       </div>
     </div>
   );
 };
-
-export async function getStaticProps() {
-  const posts = [
-    { image: "/p4.jpeg", title: "Going all-in", category: "Crafts", date: "01 Jan 2023" },
-    { image: "/p3.jpeg", title: "Exploring new ways", category: "Design", date: "15 Mar 2023" },
-  ];
-  return { props: { posts } };
-}
 
 export default Blog;

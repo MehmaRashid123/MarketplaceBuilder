@@ -24,7 +24,7 @@ function Checkout() {
     };
 
     const [selectedCountry, setSelectedCountry] = useState("United States");
-    const [selectedProvince, setSelectedProvince] = useState(provinces[selectedCountry][0]);
+    const [selectedProvince, setSelectedProvince] = useState(provinces[selectedCountry] ? provinces[selectedCountry][0] : '');
     const [email, setEmail] = useState("");
     const [emailError, setEmailError] = useState("");
     const [firstName, setFirstName] = useState("");
@@ -41,6 +41,12 @@ function Checkout() {
         calculateTotal(cart);
     }, []);
 
+    useEffect(() => {
+        if (provinces[selectedCountry] && provinces[selectedCountry].length > 0) {
+            setSelectedProvince(provinces[selectedCountry][0]);
+        }
+    }, [selectedCountry]);
+
     const calculateTotal = (cart: CartItem[]) => {
         const total = cart.reduce((sum, item) => sum + item.price * item.stockLevel, 0);
         setTotalAmount(total);
@@ -49,7 +55,6 @@ function Checkout() {
     const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const country = e.target.value;
         setSelectedCountry(country);
-        setSelectedProvince(provinces[country][0]);
     };
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -88,9 +93,7 @@ function Checkout() {
         total: totalAmount,
         status: 'pending', // Default to pending status
         orderDate: new Date().toISOString(),
-     };
-     
-    
+    };
 
     const handlePlaceOrder = async () => {
         if (!billingDetailsComplete) {
@@ -251,8 +254,10 @@ function Checkout() {
                             value={selectedCountry}
                             onChange={handleCountryChange}
                         >
-                            {countries.map((country, index) => (
-                                <option key={index} value={country}>{country}</option>
+                            {countries.map((country) => (
+                                <option key={country} value={country}>
+                                    {country}
+                                </option>
                             ))}
                         </select>
                     </div>
@@ -265,47 +270,35 @@ function Checkout() {
                             value={selectedProvince}
                             onChange={(e) => setSelectedProvince(e.target.value)}
                         >
-                            {provinces[selectedCountry].map((province, index) => (
-                                <option key={index} value={province}>{province}</option>
+                            {provinces[selectedCountry]?.map((province) => (
+                                <option key={province} value={province}>
+                                    {province}
+                                </option>
                             ))}
                         </select>
                     </div>
-                </div>
-
-                <div className="w-full lg:w-1/2 md:mx-20 mt-4 lg:mt-0 bg-white p-6 rounded-lg shadow-lg">
-                    <div className="mt-4">
-                        <table className="w-full table-auto">
-                            <thead>
-                                <tr>
-                                    <th className="py-2 text-left text-xl">Product</th>
-                                    <th className="py-2 text-right text-xl">Subtotal</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {cartItems.map((item, index) => (
-                                    <tr key={index}>
-                                        <td className="py-2 text-gray-500">{item.name} x {item.stockLevel}</td>
-                                        <td className="py-2 text-right">${(item.price * item.stockLevel).toFixed(2)}</td>
-                                    </tr>
-                                ))}
-                                <tr>
-                                    <td className="py-2 font-semibold">Subtotal</td>
-                                    <td className="py-2 text-right">${totalAmount.toFixed(2)}</td>
-                                </tr>
-                                <tr className="border-b font-semibold">
-                                    <td className="py-2">Total</td>
-                                    <td className="py-2 text-yellow-700 text-right text-xl">${totalAmount.toFixed(2)}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
 
                     <button
-                        className="mt-6 border border-black py-3 px-14 rounded-xl bg-black text-white"
+                        className={`bg-[#000000] text-white px-8 py-3 w-full mt-8 ${!billingDetailsComplete ? 'cursor-not-allowed opacity-50' : ''}`}
                         onClick={handlePlaceOrder}
+                        disabled={!billingDetailsComplete}
                     >
                         Place Order
                     </button>
+                </div>
+
+                <div className="w-full lg:w-1/2 bg-white p-6 rounded-lg shadow-lg">
+                    <h3 className="font-semibold text-2xl mb-8">Order Summary</h3>
+                    {cartItems.map((item, index) => (
+                        <div key={item._id + '-' + index} className="flex justify-between my-4">
+                            <span>{item.name}</span>
+                            <span>${item.price}</span>
+                        </div>
+                    ))}
+                    <div className="flex justify-between my-4">
+                        <span>Total</span>
+                        <span>${totalAmount}</span>
+                    </div>
                 </div>
             </div>
         </div>

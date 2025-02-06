@@ -1,4 +1,5 @@
-export default {
+// schemas/product.ts
+const productSchema = {
   name: 'product',
   title: 'Product',
   type: 'document',
@@ -60,6 +61,8 @@ export default {
       options: {
         source: 'id',
       },
-    }
+    },
   ],
 };
+
+export default productSchema;
