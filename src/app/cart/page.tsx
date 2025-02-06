@@ -111,13 +111,14 @@ const CartPage = () => {
               {cartItems.map((item) => (
                 <div key={item.id} className="flex flex-col md:flex-row items-center justify-between bg-gray-50 shadow-md rounded-lg p-4 hover:shadow-lg transition">
                   <div className="flex items-center space-x-6">
-                    <Image
-                      src={urlFor(item.image).url()}
-                      alt={item.name}
-                      className="w-20 h-20 object-cover rounded-lg shadow-sm"
-                      width={500}
-                      height={500}
-                    />
+                  <Image
+  src={item.image ? urlFor(item.image).url() : "/placeholder.png"} // Use a placeholder image if undefined
+  alt="A description of the image"
+  className="w-20 h-20 object-cover rounded-lg shadow-sm"
+  width={500}
+  height={500}
+/>
+
                     <div>
                       <h2 className="text-xl font-semibold text-gray-700">{item.name}</h2>
                       <p className="text-sm text-gray-500">Price: ${item.price}</p>
@@ -125,20 +126,22 @@ const CartPage = () => {
                   </div>
 
                   <div className="flex items-center space-x-4 mt-4 md:mt-0">
-                    <button
-                      className="w-10 h-10 flex items-center justify-center bg-gray-200 text-gray-600 font-bold rounded-full shadow-md hover:bg-gray-300 hover:text-gray-800 transition transform hover:scale-105"
-                      onClick={() => handleDecrement(item.id)}
-                    >
-                      <span>-</span>
-                    </button>
-                    <span className="text-lg font-semibold text-gray-700">{item.stockLevel}</span>
-                    <button
-                      className="w-10 h-10 flex items-center justify-center bg-gray-200 text-gray-600 font-bold rounded-full shadow-md hover:bg-gray-300 hover:text-gray-800 transition transform hover:scale-105"
-                      onClick={() => handleIncrement(item.id)}
-                    >
-                      <span>+</span>
-                    </button>
-                  </div>
+  <button
+    className="w-12 h-12 flex items-center justify-center bg-gray-300 text-gray-700 font-bold rounded-lg shadow-md hover:bg-gray-400 hover:text-gray-900 transition-all duration-200 ease-in-out transform active:scale-95"
+    onClick={() => handleDecrement(item.id)}
+    disabled={item.stockLevel <= 1}
+  >
+    <span className="text-2xl">−</span>
+  </button>
+  <span className="text-xl font-semibold text-gray-800 px-4">{item.stockLevel}</span>
+  <button
+    className="w-12 h-12 flex items-center justify-center bg-green-500 text-white font-bold rounded-lg shadow-md hover:bg-green-600 hover:text-white transition-all duration-200 ease-in-out transform active:scale-95"
+    onClick={() => handleIncrement(item.id)}
+  >
+    <span className="text-2xl">+</span>
+  </button>
+</div>
+
 
                   <button
                     className="text-red-500 hover:text-red-700 mt-4 md:mt-0"

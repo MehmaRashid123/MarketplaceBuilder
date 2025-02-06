@@ -64,7 +64,7 @@ const ProductListing = ({ product }: { product: Product }) => {
   const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>, product: Product) => {
     e.preventDefault();
     Swal.fire({
-      position: "bottom-right",
+      position: "center",
       icon: "success",
       title: `${product.name} added to cart`,
       showConfirmButton: false,
