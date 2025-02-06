@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import Link from "next/link";
+
 export interface Product {
   category: string;
   id: string;
@@ -26,14 +27,13 @@ export interface Product {
   quantity?: number;
 }
 
-
-
 const CartPage = () => {
   const [cartItems, setCartItems] = useState<Product[]>([]);
 
+  // Include getCartItems as a dependency for useEffect
   useEffect(() => {
     setCartItems(getCartItems());
-  }, []);
+  }, [getCartItems]);  // <- Fix dependency warning
 
   const handleRemove = (id: string) => {
     Swal.fire({
@@ -64,7 +64,7 @@ const CartPage = () => {
       confirmButtonText: "Yes, remove all!",
     }).then((result) => {
       if (result.isConfirmed) {
-        clearCart(); // Add this function in your actions
+        clearCart();
         setCartItems(getCartItems());
         Swal.fire("Cleared!", "All items have been removed.", "success");
       }
@@ -111,13 +111,13 @@ const CartPage = () => {
               {cartItems.map((item) => (
                 <div key={item.id} className="flex flex-col md:flex-row items-center justify-between bg-gray-50 shadow-md rounded-lg p-4 hover:shadow-lg transition">
                   <div className="flex items-center space-x-6">
-                  <Image
-  src={item.image ? urlFor(item.image).url() : "/placeholder.png"} // Use a placeholder image if undefined
-  alt="A description of the image"
-  className="w-20 h-20 object-cover rounded-lg shadow-sm"
-  width={500}
-  height={500}
-/>
+                    <Image
+                      src={item.image ? urlFor(item.image).url() : "/placeholder.png"}
+                      alt="A description of the image"
+                      className="w-20 h-20 object-cover rounded-lg shadow-sm"
+                      width={500}
+                      height={500}
+                    />
 
                     <div>
                       <h2 className="text-xl font-semibold text-gray-700">{item.name}</h2>
@@ -126,22 +126,21 @@ const CartPage = () => {
                   </div>
 
                   <div className="flex items-center space-x-4 mt-4 md:mt-0">
-  <button
-    className="w-12 h-12 flex items-center justify-center bg-gray-300 text-gray-700 font-bold rounded-lg shadow-md hover:bg-gray-400 hover:text-gray-900 transition-all duration-200 ease-in-out transform active:scale-95"
-    onClick={() => handleDecrement(item.id)}
-    disabled={item.stockLevel <= 1}
-  >
-    <span className="text-2xl">−</span>
-  </button>
-  <span className="text-xl font-semibold text-gray-800 px-4">{item.stockLevel}</span>
-  <button
-    className="w-12 h-12 flex items-center justify-center bg-green-500 text-white font-bold rounded-lg shadow-md hover:bg-green-600 hover:text-white transition-all duration-200 ease-in-out transform active:scale-95"
-    onClick={() => handleIncrement(item.id)}
-  >
-    <span className="text-2xl">+</span>
-  </button>
-</div>
-
+                    <button
+                      className="w-12 h-12 flex items-center justify-center bg-gray-300 text-gray-700 font-bold rounded-lg shadow-md hover:bg-gray-400 hover:text-gray-900 transition-all duration-200 ease-in-out transform active:scale-95"
+                      onClick={() => handleDecrement(item.id)}
+                      disabled={item.stockLevel <= 1}
+                    >
+                      <span className="text-2xl">−</span>
+                    </button>
+                    <span className="text-xl font-semibold text-gray-800 px-4">{item.stockLevel}</span>
+                    <button
+                      className="w-12 h-12 flex items-center justify-center bg-green-500 text-white font-bold rounded-lg shadow-md hover:bg-green-600 hover:text-white transition-all duration-200 ease-in-out transform active:scale-95"
+                      onClick={() => handleIncrement(item.id)}
+                    >
+                      <span className="text-2xl">+</span>
+                    </button>
+                  </div>
 
                   <button
                     className="text-red-500 hover:text-red-700 mt-4 md:mt-0"
