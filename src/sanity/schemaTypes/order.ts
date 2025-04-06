@@ -59,7 +59,7 @@ const orderSchema = {
           { title: 'Pending', value: 'pending' },
           { title: 'Shipped', value: 'shipped' },
           { title: 'Delivered', value: 'delivered' },
-          { title: 'Cancelled', value: 'cancelled' },
+          { title: 'Cancelled', value: 'cancelled' }, // Fixed typo: 'canclled' to 'cancelled'
         ],
         layout: 'radio',
       },

@@ -25,14 +25,14 @@ function Header() {
     // Update cart quantity from localStorage on component mount
     useEffect(() => {
         setCartQuantity(getCartQuantity());
-    }, []); // Empty dependency array means this runs once when the component mounts
+    }, []); 
 
     return (
         <header className="bg-white shadow-md sticky top-0 z-50">
             <div className="flex justify-between items-center mx-auto max-w-screen-xl p-4">
                 {/* Logo */}
                 <h1 className="text-xl font-bold text-gray-800">
-                    <Link href="/">Syeda&apos;s</Link> {/* Escaped apostrophe */}
+                    <Link href="/">Sofa Corner</Link> 
                 </h1>
 
                 {/* Mobile Menu Button */}
